@@ -1,9 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const SuggestionListLayout = props => {
+const ListLayout = props => {
   return (
-    <View style={styles.container}>
+    <View
+      style={
+        props.isCategory ? styles.containerCategory : styles.containerSuggestion
+      }>
       <Text style={styles.title}>{props.title}</Text>
       {props.children}
     </View>
@@ -11,9 +14,13 @@ const SuggestionListLayout = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  containerSuggestion: {
     paddingVertical: 10,
     flex: 1,
+  },
+  containerCategory: {
+    paddingVertical: 30,
+    paddingHorizontal: 10,
   },
   title: {
     color: '#4c4c4c',
@@ -24,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SuggestionListLayout;
+export default ListLayout;

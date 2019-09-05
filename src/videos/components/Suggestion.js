@@ -5,17 +5,17 @@ const Suggestion = props => {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Image style={styles.cover} source={{uri: props.item.Poster}} />
+        <Image style={styles.cover} source={{uri: props.Poster}} />
         <View style={styles.genreContainer}>
-          <Text style={styles.genre}>{props.item.Type}</Text>
+          <Text style={styles.genre}>{props.Type}</Text>
         </View>
       </View>
       <View style={styles.right}>
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
-          {props.item.Title}
+          {props.Title}
         </Text>
-        <Text style={styles.year}>{props.item.Year}</Text>
-        <Text style={styles.rating}>imdb ID: {props.item.imdbID}</Text>
+        <Text style={styles.year}>{props.Year}</Text>
+        <Text style={styles.rating}>imdb ID: {props.imdbID}</Text>
       </View>
     </View>
   );

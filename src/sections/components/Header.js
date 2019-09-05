@@ -8,7 +8,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-const Header = () => {
+const Header = props => {
   return (
     <View>
       <SafeAreaView style={styles.SafeAreaView}>
@@ -16,10 +16,14 @@ const Header = () => {
           <StatusBar backgroundColor={'#3A508B'} />
         </View>
         <View style={styles.container}>
-          <Image
-            source={require('../../assets/logo.png')}
-            style={styles.logo}
-          />
+          {props.title == null ? (
+            <Image
+              source={require('../../assets/logo.png')}
+              style={styles.logo}
+            />
+          ) : (
+            <Text style={styles.title}>{props.title}</Text>
+          )}
         </View>
       </SafeAreaView>
     </View>
@@ -38,6 +42,11 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 5,
     alignItems: 'center',
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
 
