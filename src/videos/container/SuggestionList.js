@@ -56,7 +56,7 @@ class SuggestionList extends Component {
 
   componentDidMount() {
     this.getFirstTenMovies('batman');
-    this.getSecondTenMovies('pokemon');
+    this.getSecondTenMovies('superman');
   }
 
   render() {
@@ -82,6 +82,7 @@ class SuggestionList extends Component {
             )}
             renderItem={this.renderItem}
             ItemSeparatorComponent={() => <Separator />}
+            keyExtractor={item => item.imdbID}
           />
         </Layout>
       );
