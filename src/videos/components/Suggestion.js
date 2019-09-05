@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 7,
     backgroundColor: 'black',
+    opacity: 0.7,
   },
   genre: {
     color: 'white',

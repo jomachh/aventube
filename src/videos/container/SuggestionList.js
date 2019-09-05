@@ -12,7 +12,11 @@ class SuggestionList extends Component {
     super();
     this.state = {
       loading: true,
-      suggestionList: [],
+      firstTenSuggestions: [],
+      secondTenSuggestions: [],
+      // suggestionList: this.firstTenSuggestions.concat(
+      //   this.secondTenSuggestions,
+      // ),
     };
   }
 
@@ -27,22 +31,38 @@ class SuggestionList extends Component {
     return <Suggestion {...item} />;
   };
 
-  componentDidMount() {
-    fetch('http://www.omdbapi.com/?s=batman&page=1&apikey=2dff07bc')
+  getFirstTenMovies = name => {
+    fetch(`http://www.omdbapi.com/?s=${name}&page=1&apikey=2dff07bc`)
       .then(response => response.json())
-      .then(responseJson => {
+      .then(responseJsonPage1 => {
         this.setState({
-          loading: false,
-          suggestionList: responseJson.Search,
+          firstTenSuggestions: responseJsonPage1.Search,
         });
       })
       .catch(error => console.log(error));
+  };
+
+  getSecondTenMovies = name => {
+    fetch(`http://www.omdbapi.com/?s=${name}&page=2&apikey=2dff07bc`)
+      .then(response => response.json())
+      .then(responseJsonPage2 => {
+        this.setState({
+          loading: false,
+          secondTenSuggestions: responseJsonPage2.Search,
+        });
+      })
+      .catch(error => console.log(error));
+  };
+
+  componentDidMount() {
+    this.getFirstTenMovies('batman');
+    this.getSecondTenMovies('pokemon');
   }
 
   render() {
     if (this.state.loading) {
       return (
-        <Layout title="No te emociones">
+        <Layout title="Nos estamos conectando con la API">
           <Empty text={'Cargando..'} />
         </Layout>
       );
@@ -50,7 +70,9 @@ class SuggestionList extends Component {
       return (
         <Layout title="Recomendado para vos">
           <FlatList
-            data={this.state.suggestionList}
+            data={this.state.firstTenSuggestions.concat(
+              this.state.secondTenSuggestions,
+            )}
             ListEmptyComponent={() => (
               <Empty
                 text={
