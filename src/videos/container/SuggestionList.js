@@ -20,7 +20,6 @@ class SuggestionList extends Component {
       `http://www.omdbapi.com/?i=${item.imdbID}&apikey=2dff07bc`,
     );
     const movieData = await movieQuery.json();
-
     this.props.dispatch({
       type: 'SET_SELECTED_MOVIE',
       payload: {

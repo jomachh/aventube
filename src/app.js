@@ -5,6 +5,7 @@ import Home from './Views/container/Home';
 import Header from './sections/components/Header';
 import SuggestionList from './videos/container/SuggestionList';
 import Movie from './Views/container/Movie';
+import Search from './sections/container/Search';
 
 class AppLayout extends Component {
   async getMovies(name, page) {
@@ -44,6 +45,7 @@ class AppLayout extends Component {
       return (
         <Home>
           <Header />
+          <Search />
           <SuggestionList />
         </Home>
       );
