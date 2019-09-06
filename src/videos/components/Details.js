@@ -4,10 +4,10 @@ import {ScrollView, View, Text, Image, StyleSheet} from 'react-native';
 const Details = props => {
   return (
     <View>
-      <View style={styles.coverContainer}>
-        <Image style={styles.cover} source={{uri: props.Poster}} />
-      </View>
       <ScrollView>
+        <View style={styles.coverContainer}>
+          <Image style={styles.cover} source={{uri: props.Poster}} />
+        </View>
         <View style={styles.details}>
           <ScrollView horizontal>
             <View style={styles.metadataContainer}>
@@ -17,7 +17,6 @@ const Details = props => {
               <Text style={styles.metadata}>{props.Released}</Text>
             </View>
           </ScrollView>
-
           <Text style={styles.title}>Descripción</Text>
           <Text style={styles.description}>{props.Plot}</Text>
           <Text style={styles.subtitle}>Director</Text>
@@ -46,14 +45,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     width: 195,
     height: 260,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   title: {
     color: '#44546b',
