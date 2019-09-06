@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {FlatList} from 'react-native';
 import Layout from '../components/ListLayout';
 import Empty from '../components/EmptyList';
@@ -14,8 +15,29 @@ function mapStateToProps(state) {
 }
 
 class SuggestionList extends Component {
+  async viewMovie(item) {
+    const movieQuery = await fetch(
+      `http://www.omdbapi.com/?i=${item.imdbID}&apikey=2dff07bc`,
+    );
+    const movieData = await movieQuery.json();
+
+    this.props.dispatch({
+      type: 'SET_SELECTED_MOVIE',
+      payload: {
+        movie: movieData,
+      },
+    });
+  }
+
   renderItem = ({item}) => {
-    return <Suggestion {...item} />;
+    return (
+      <Suggestion
+        onPress={() => {
+          this.viewMovie(item);
+        }}
+        {...item}
+      />
+    );
   };
 
   render() {
@@ -38,5 +60,10 @@ class SuggestionList extends Component {
     );
   }
 }
+
+SuggestionList.defaultProps = {
+  list_1: [],
+  list_2: [],
+};
 
 export default connect(mapStateToProps)(SuggestionList);

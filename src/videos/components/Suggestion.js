@@ -1,23 +1,25 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Suggestion = props => {
   return (
-    <View style={styles.container}>
-      <View style={styles.left}>
-        <Image style={styles.cover} source={{uri: props.Poster}} />
-        <View style={styles.genreContainer}>
-          <Text style={styles.genre}>{props.Type}</Text>
+    <TouchableOpacity onPress={props.onPress}>
+      <View style={styles.container}>
+        <View style={styles.left}>
+          <Image style={styles.cover} source={{uri: props.Poster}} />
+          <View style={styles.genreContainer}>
+            <Text style={styles.genre}>{props.Type}</Text>
+          </View>
+        </View>
+        <View style={styles.right}>
+          <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
+            {props.Title}
+          </Text>
+          <Text style={styles.year}>{props.Year}</Text>
+          <Text style={styles.rating}>imdb ID: {props.imdbID}</Text>
         </View>
       </View>
-      <View style={styles.right}>
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
-          {props.Title}
-        </Text>
-        <Text style={styles.year}>{props.Year}</Text>
-        <Text style={styles.rating}>imdb ID: {props.imdbID}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

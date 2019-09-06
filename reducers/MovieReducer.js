@@ -6,6 +6,9 @@ function MoviesReducer(state = {}, action) {
     case 'SET_SECOND_MOVIES': {
       return {...state, ...action.payload};
     }
+    case 'SET_SELECTED_MOVIE': {
+      return {...state, selectedMovie: action.payload.movie};
+    }
     default:
       return state;
   }
